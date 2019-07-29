@@ -1,0 +1,119 @@
+1. check the aws CLI version
+
+   $ aws --version
+2.configure the aws profile
+
+ AWS Access Key ID [None]: <your access key>
+AWS Secret Access Key [None]: <your secret key>
+Default region name [None]: <your region name>
+Default output format [None]: ENTER
+
+3.Listing Buckets
+
+ $ aws s3 ls
+ $ aws s3 ls s3://bucket-name (list of obejct under specific bucket)
+
+4.Creating Buckets
+
+ $ aws s3 mb s3://bucket-name
+
+5.Removing Buckets
+  
+ $ aws s3 rb s3://bucket-name
+ $ aws s3 rb s3://bucket-name --force (forcefully delete bucket)
+
+6.Copy file to s3 bucket
+
+ $ aws s3 cp file.txt s3://my-bucket/
+ 
+7. Sync files to s3 bucket
+
+ $ aws s3 sync cd /var/www/html s3://my-bucket/
+
+8.Copy multiple files from directory
+
+ $ aws s3 cp <your directory path> s3://<your bucket name> --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive
+
+9.we can set exclude or include a flag, while copying files.
+
+ $ aws s3 cp <your directory path> s3://<your bucket name>/ --recursive --exclude "*.jpg"  --include "*.log"
+
+// Delete local file
+ $ rm ./MyFile1.txt
+
+// Attempt sync without --delete option - nothing happens
+ $ aws s3 sync . s3://my-bucket/path
+
+// Sync with deletion - object is deleted from bucket
+ $ aws s3 sync . s3://my-bucket/path --delete
+delete: s3://my-bucket/path/MyFile1.txt
+
+// Delete object from bucket
+ $ aws s3 rm s3://my-bucket/path/MySubdirectory/MyFile3.txt
+delete: s3://my-bucket/path/MySubdirectory/MyFile3.txt
+
+// Sync with deletion - local file is deleted
+ $ aws s3 sync s3://my-bucket/path . --delete
+delete: MySubdirectory\MyFile3.txt
+
+// Sync with Infrequent Access storage class
+ $ aws s3 sync . s3://my-bucket/path --storage-class STANDARD_IA
+
+ $ aws s3 sync . s3://my-bucket/path
+upload: MySubdirectory\MyFile3.txt to s3://my-bucket/path/MySubdirectory/MyFile3.txt
+upload: MyFile2.txt to s3://my-bucket/path/MyFile2.txt
+upload: MyFile1.txt to s3://my-bucket/path/MyFile1.txt
+
+Therefore, --include is needed only when you have to specify exceptions to the --exclude option 
+(that is, --include effectively means "don't exclude").
+ $ aws s3 sync . s3://my-bucket/path --exclude "*.txt" --include "MyFile*.txt
+
+ s3 sync command also accepts an --acl option,
+ by which you may set the access permissions for files copied to Amazon S3
+
+$ aws s3 sync . s3://my-bucket/path --acl public-read
+
+// Copy MyFile.txt in current directory to s3://my-bucket/path
+$ aws s3 cp MyFile.txt s3://my-bucket/path/
+
+// Move all .jpg files in s3://my-bucket/path to ./MyDirectory
+$ aws s3 mv s3://my-bucket/path ./MyDirectory --exclude "*" --include "*.jpg" --recursive
+
+// List the contents of my-bucket
+$ aws s3 ls s3://my-bucket
+
+// List the contents of path in my-bucket
+$ aws s3 ls s3://my-bucket/path/
+
+// Delete s3://my-bucket/path/MyFile.txt
+$ aws s3 rm s3://my-bucket/path/MyFile.txt
+
+// Delete s3://my-bucket/path and all of its contents
+$ aws s3 rm s3://my-bucket/path --recursive
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
