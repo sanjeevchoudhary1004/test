@@ -1,0 +1,210 @@
+//git config
+$ git config –global user.name “Imsanjeev100”   //command sets the author name and email address respectively to be used with your commits.
+
+$ git config –global user.email “choudhary1004sanjeev@gmail.com” 
+
+git init
+$ git init [repository name]  //This command is used to start a new repository.
+Ex:- $ git init /home/edureka/Documents/Demo
+
+git clone
+$ git clone [url]        // command is used to obtain a repository from an existing URL.
+$ git clone https://github.com/sanjeevchoudhary1004/test
+
+git add
+$ git add [file]  //command adds a file to the staging area.
+~/Documents/Demos$ git add project_1
+
+$ git add *      //command adds one or more to the staging area
+~/Documents/Demos$ git add *
+
+//git commit // 
+$ git commit -m “[ Type in the commit message]”
+$ git commit -a   //command commits any files you’ve added with the git add command and also commits any files you’ve changed since then
+
+//git diff // 
+
+ ~/Documents/Demos$ git diff   //command shows the file differences which are not yet staged
+
+$ git diff -staged 
+                                     
+~/Documents/Demos$ git diff --staged  //command shows the differences between the files in the staging area and the latest version present
+
+$ git diff [first branch] [second branch]   //command shows the differences between the two branches mentioned.
+
+~/Documents/Demos$ git diff branch_2 branch_3
+
+//git reset [File]      //command unstages the file, but it preserves the file contents.
+
+~/Documents/Demo/project_1/css$ git reset site.css
+
+//git reset [commit]   //command undoes all the commits after the specified commit and preserves the changes locally
+
+~/Documents/Demos$ git reset 09bb77f897d787f897d89
+
+//git reset –hard [commit]   //This command discards all history and goes back to the specified commit.
+
+//git log                   //Check Logs
+git log –follow[file]      Ex:- ~/Documents/Demos$ git log --follow project_1
+
+//git show 
+$ git show [commit]         //command shows the metadata and content changes of the specified commit. 
+
+git reset --soft HEAD^     # use --soft if you want to keep your changes
+git reset --hard HEAD^     # use --hard if you don't care about keeping the changes you made
+git revert HEAD           //undo a public commit
+
+//git status              //This command lists all the files that have to be committed
+~/Documents/Demos$ git status
+
+// git rm
+
+git rm [file]   //command deletes the file from your working directory and stages the deletion.
+
+~/Documents/Demos/project_2$ git rm example.txt
+
+//git tag [commitID]  //command is used to give tags to the specified commit.
+
+Ex:- ~/Documents/Demos$ git tag fdhfkljsdhu43u43uoi33
+
+// $ git branch   // command lists all the local branches in the current repository
+
+Ex:- ~/Documents/Demos/project_2$ git branch
+
+// $ git branch [brach name]    //command creates a new branch
+Ex:- ~/Documents/Demos$ git branch branch_1
+
+//$ git branch -d [branch name]   //command deletes the feature branch
+Ex:- ~/Documents/Demos$ git branch -d branch_1
+
+//git checkout [branch name]    //command is used to switch from one branch to another.
+Ex:- ~/Documents/Demos$ git checkout  branch_2
+
+//git checkout -b [branch name]    //command creates a new branch and also switches to it.
+Ex:- ~/Documents/Demos$ git checkout -b  branch_4
+
+//git merge [branch name]            //command merges the specified branch’s history into the current branch
+Ex:- ~/Documents/Demos$ git merge branch_2
+
+//git remote add [variable name] [Remote Server Link]
+Ex:- ~/Documents/Demos$ git remote add origin https://github.com/sanjeevchoudhary1004/GitDemo.git
+
+//git push [variable name] master        //command sends the committed changes of master branch to your remote repository
+Ex:- ~/Documents/Demos$ git push origin master
+
+//git push [variable name] [branch]      //command sends the branch commits to your remote repository
+Ex:- ~/Documents/Demo$ git push origin master
+
+//git push –all [variable name]         //command pushes all branches to your remote repository.
+Ex:- ~/Documents/Demo$ git push --all origin
+
+//git push [variable name] :[branch name]   //command deletes a branch on your remote repository
+Ex:- ~/Documents/Demo$ git push origin : branch_2
+
+//git pull [Repository Link]      //command fetches and merges changes on the remote server to your working directory.
+Ex:- ~/Documents/Demo$ git pull https://github.com/sanjeevchoudahry1004/gitlearn.git
+
+//git stash save       //command temporarily stores all the modified tracked files
+Ex:- ~/Documents/Demo$ git stash save
+
+//git stash pop     //command restores the most recently stashed files
+Ex:- ~/Documents/Demo$ git stash pop
+
+//git stash list    //command lists all stashed changesets.
+Ex:- ~/Documents/Demo$ git stash list
+
+//git stash drop     //command discards the most recently stashed changeset.
+Ex:- ~/Documents/Demo$ git stash drop stash@{0}
+
+
+///**********************************************************///////////////////*********************//////////
+
+/*Getting & Creating Projects
+Command	Description*/
+
+git init	//Initialize a local Git repository
+git clone ssh://git@github.com/[username]/[repository-name].git	  //Create a local copy of a remote repository
+
+/*Basic Snapshotting
+Command	Description*/
+
+git status	         //Check status
+git add [file-name.txt]	 //Add a file to the staging area
+git add -A	         //Add all new and changed files to the staging area
+git commit -m "[commit message]"	//Commit changes
+git rm -r [file-name.txt]	        //Remove a file (or folder)
+
+/*Branching & Merging
+Command	Description*/
+
+git branch	   //List branches (the asterisk denotes the current branch)
+git branch -a	   //List all branches (local and remote)
+git branch [branch name]	//Create a new branch
+git branch -d [branch name]	//Delete a branch
+git push origin --delete [branch name]	    //Delete a remote branch
+git checkout -b [branch name]	            //Create a new branch and switch to it
+git checkout -b [branch name] origin/[branch name]	//Clone a remote branch and switch to it
+git branch -m [old branch name] [new branch name]	//Rename a local branch
+git checkout [branch name]	                        //Switch to a branch
+git checkout -                                          //Switch to the branch last checked out
+git checkout -- [file-name.txt]	                       //Discard changes to a file
+git merge [branch name]	                               //Merge a branch into the active branch
+git merge [source branch] [target branch]	       //Merge a branch into a target branch
+git stash	                                      //Stash changes in a dirty working directory
+git stash clear	                                      //Remove all stashed entries
+
+/*Sharing & Updating Projects
+Command	Description*/
+
+git push origin [branch name]	                   //Push a branch to your remote repository
+git push -u origin [branch name]	           //Push changes to remote repository (and remember the branch)
+git push	                                  //Push changes to remote repository (remembered branch)
+git push origin --delete [branch name]	          //Delete a remote branch
+git pull	                                  //Update local repository to the newest commit
+git pull origin [branch name]	                  //Pull changes from remote repository
+git remote add origin ssh://git@github.com/[username]/[repository-name].git	    //Add a remote repository
+git remote set-url origin ssh://git@github.com/[username]/[repository-name].git	    //Set a repository's origin branch to SSH
+
+/*Inspection & Comparison
+Command	Description*/
+
+git log                                      //	View changes
+git log --summary	                    //View changes (detailed)
+git diff [source branch] [target branch]    //Preview changes before merging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
